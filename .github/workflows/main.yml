@@ -71,6 +71,7 @@ jobs:
         
   cleanup:
     needs: linting
+    if: always()
     runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
     steps:
     
