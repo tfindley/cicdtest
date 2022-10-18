@@ -39,3 +39,10 @@ jobs:
 
       - name: Envs
         run: env
+
+      - name: Directory Structure
+        run:  ls -lah
+        
+      - name: Directory Structure one up
+        run:  ls lah ../
+            
