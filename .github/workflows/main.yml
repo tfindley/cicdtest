@@ -22,23 +22,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  testing:
-    runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
-    steps:
-      - name: Hello World
-        run: echo "Hello World from GitHub"
-
-      - name: Envs
-        run: |
-          hostname
-          env
-
-      - name: Directory Structure
-        run:  |
-          pwd
-          ls -lah
-          ls -lah ../
-
   build_venv:
     runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
     steps:
@@ -73,6 +56,12 @@ jobs:
   linting:
     runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
     steps:
+      
+      - name: debug
+        run: |
+          pwd
+          ls -lah
+          ls -lah ../
     
       - name: Activate venv
         run: . ../.venv/bin/activate
