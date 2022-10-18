@@ -54,9 +54,9 @@ jobs:
           fi
 
   linting:
+    needs: build_venv
     runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
     steps:
-      
       - name: debug
         run: |
           pwd
@@ -70,6 +70,7 @@ jobs:
         
         
   cleanup:
+    needs: linting
     runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
     steps:
     
