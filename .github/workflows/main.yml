@@ -42,17 +42,26 @@ jobs:
   build_venv:
     runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
     steps:
+    
+      - name: Add requirements to venv venv
+        run: |
+          if [ -d "../.venv" ]; then
+            rm -rf ../.venv
+          else
+            echo "No venv detected"
+          fi
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Create python venv
         run: |
-          python3 -m venv .venv
+          python3 -m venv ../.venv
+          . ../.venv/bin/activate
           pip install --upgrade pip
 
       - name: Add requirements to venv venv
         run: |
-          . .venv/bin/activate
+          . ../.venv/bin/activate
           FILE=requirements.txt
           if [ -f "$FILE" ]; then
             echo "$FILE exists."
@@ -65,5 +74,21 @@ jobs:
     runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
     steps:
     
-      - name: lint all code
+      - name: Activate venv
+        run: . ../.venv/bin/activate
+
+      - name: lint all code using flake8
         run: flake8 .
+        
+        
+  cleanup:
+    runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
+    steps:
+    
+      - name: Destroy venv
+        run: |
+          if [ -d "../.venv" ]; then
+            rm -rf ../.venv
+          else
+            echo "No venv detected"
+          fi
