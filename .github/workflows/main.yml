@@ -23,7 +23,7 @@ concurrency:
 
 jobs:
   check-links:
-    runs-on: ${{ fromJSON('["ubuntu-latest", "self-hosted"]')[github.repository == 'github/docs-internal'] }}
+    runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
