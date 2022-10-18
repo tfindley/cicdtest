@@ -44,5 +44,5 @@ jobs:
         run:  ls -lah
         
       - name: Directory Structure one up
-        run:  ls lah ../
+        run:  ls -lah ../
             
