@@ -1,4 +1,4 @@
-name: 'Link Checker: All English'
+name: 'Test CICD Pipeline'
 
 # **What it does**: Renders the content of every page and check all internal links.
 # **Why we have it**: To make sure all links connect correctly.
@@ -41,8 +41,8 @@ jobs:
         run: env
 
       - name: Directory Structure
-        run:  ls -lah
-        
-      - name: Directory Structure one up
-        run:  ls -lah ../
-            
+        run:  |
+          pwd
+          ls -lah
+          ls -lah ../
+      
