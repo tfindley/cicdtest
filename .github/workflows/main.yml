@@ -38,7 +38,9 @@ jobs:
         run: echo "Hello World from GitHub"
 
       - name: Envs
-        run: env
+        run: |
+          hostname
+          env
 
       - name: Directory Structure
         run:  |
