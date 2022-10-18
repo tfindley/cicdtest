@@ -63,11 +63,10 @@ jobs:
           ls -lah
           ls -lah ../
     
-      - name: Activate venv
-        run: . ../.venv/bin/activate
-
-      - name: lint all code using flake8
-        run: flake8 .
+      - name: Activate venv then lint all code using flake8
+        run: |
+          . ../.venv/bin/activate
+          flake8 .
         
         
   cleanup:
