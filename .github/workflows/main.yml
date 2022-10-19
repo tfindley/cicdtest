@@ -7,9 +7,11 @@ name: 'Test CICD Pipeline'
 on:
   workflow_dispatch:
   push:
-    branches:
+    branches-ignore:
       - main
   pull_request:
+    branches:
+    - main
 
 permissions:
   contents: read
@@ -108,9 +110,23 @@ jobs:
           autopep8 -aa -i -r .
           flake8 .
 
+  test:
+    needs: [build_venv]
+    runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
+
+    steps:
+    - name: Use python venv
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+  
+    - name: Run Tests
+      run: |
+        python manage.py test
+
   deploy:
-    needs: [linting]
-    if: ${{ failure() }}
+    needs: [test]
+
     runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
 
     steps:
@@ -125,8 +141,8 @@ jobs:
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: django-github-actions-aws
-        environment_name: django-github-actions-aws
+        application_name: django-github-actions0-aws
+        environment_name: Djangogithubactions0aws-env
         version_label: 12348
         region: "us-east-1"
         deployment_package: deploy.zip
