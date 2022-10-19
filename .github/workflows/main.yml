@@ -84,6 +84,8 @@ jobs:
 
       - name: Use python venv
         uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
 
       - name: Activate venv then lint all code using flake8
@@ -96,13 +98,15 @@ jobs:
     runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
     steps:
 
-    - name: Use python venv
-      uses: actions/setup-python@v4
+      - name: Use python venv
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
-    - name: fix content
-      run: |
-        autopep8 -aa -i -r .
-        flake8 .
+      - name: fix content
+        run: |
+          autopep8 -aa -i -r .
+          flake8 .
 
     # - name: Recommit
     #   uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
