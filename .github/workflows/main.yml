@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup python venv
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
@@ -81,7 +81,11 @@ jobs:
           pwd
           ls -lah
           ls -lah ../
-    
+
+      - name: Use python venv
+        uses: actions/setup-python@v4
+
+
       - name: Activate venv then lint all code using flake8
         run: |
           flake8 .
@@ -91,6 +95,9 @@ jobs:
     if: ${{ failure() }}
     runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
     steps:
+
+    - name: Use python venv
+      uses: actions/setup-python@v4
 
     - name: fix content
       run: |
