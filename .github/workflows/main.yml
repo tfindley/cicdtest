@@ -35,12 +35,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          FILE=requirements.txt
-          if [ -f "$FILE" ]; then
-            echo "$FILE exists."
+          if [ -f "requirements.txt" ]; then
+            echo "requirements.txt exists."
             pip install -r requirements.txt
           else
-            echo "$FILE does not exist."
+            echo "requirements.txt does not exist."
           fi
 
 
