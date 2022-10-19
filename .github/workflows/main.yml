@@ -86,7 +86,7 @@ jobs:
           python-version: '3.x'
 
 
-      - name: Activate venv then lint all code using flake8
+      - name: Lint all code using flake8
         run: |
           flake8 .
 
