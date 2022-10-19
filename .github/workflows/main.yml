@@ -102,13 +102,14 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: fix content
+      - name: fix-content
         run: |
           autopep8 -aa -i -r .
           flake8 .
 
   commit:
     needs: fixing
+    if: failure() && fixing.steps.fix-content.outcome == 'success'
     runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
     steps:
       - name: Recommit
