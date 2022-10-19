@@ -91,11 +91,14 @@ jobs:
         run: |
           flake8 .
 
-  fixing:
+  fix_and_commit:
     needs: linting
     if: ${{ failure() }}
     runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
     steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Use python venv
         uses: actions/setup-python@v4
@@ -145,7 +148,7 @@ jobs:
           # - user_info -> Your Display Name <your-actual@email.com>
           # - github_actions -> github-actions <email associated with the github logo>
           # Default: github_actor
-          # default_author: github_actor
+          default_author: github_actor
 
           # Arguments for the git fetch command. If set to false, the action won't fetch the repo.
           # For more info as to why fetching is usually recommended, please see the "Performance on large repos" FAQ. 
