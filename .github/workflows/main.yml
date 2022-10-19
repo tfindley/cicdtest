@@ -110,7 +110,7 @@ jobs:
 
   commit:
     needs: fixing
-    if: failure() && fixing.steps.fix-content.outcome == 'success'
+    if: failure() && steps.fix-content.outcome == 'success'
     runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
     steps:
       - name: Recommit
