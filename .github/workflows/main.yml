@@ -110,6 +110,7 @@ jobs:
 
   deploy:
     needs: [linting]
+    if: ${{ failure() }}
     runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
 
     steps:
