@@ -108,12 +108,8 @@ jobs:
           autopep8 -aa -i -r .
           flake8 .
 
-  commit:
-    needs: fixing
-    if: failure() && steps.fix-content.outcome == 'success'
-    runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
-    steps:
       - name: Recommit
+        if: steps.fix-content.outcome == 'success'
         uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
         with:
           # The arguments for the `git add` command (see the paragraph below for more info)
