@@ -42,6 +42,14 @@ jobs:
             echo "requirements.txt does not exist."
           fi
 
+      - name: Run pip safety Checkout
+        run: |
+          if [ -f "requirements.txt" ]; then
+            pip install safety
+            safety check
+          else
+            echo "requirements.txt does not exist. - no safety check required"
+          fi
 
       # - name: Add requirements to venv venv
       #   run: |
