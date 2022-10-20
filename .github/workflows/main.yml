@@ -170,7 +170,7 @@ jobs:
 
           # If this input is set, the action will push the commit to a new branch with this name.
           # Default: ''
-          new_branch: ${{ github.ref_name }}-autopep8"
+          new_branch: ${{ github.ref_name }}-autopep8
 
           # The way the action should handle pathspec errors from the add and remove commands. Three options are available:
           # - ignore -> errors will be logged but the step won't fail
@@ -233,7 +233,7 @@ jobs:
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: django-github-actions0-aws
         environment_name: Djangogithubactions0aws-env
-        version_label: 12352
+        version_label: 12353
         region: "us-east-1"
         deployment_package: deploy.zip
 
