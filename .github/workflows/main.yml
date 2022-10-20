@@ -162,7 +162,7 @@ jobs:
 
           # If this input is set, the action will push the commit to a new branch with this name.
           # Default: ''
-          new_branch: $GITHUB_BASE_REF-autopep8
+          new_branch: ${{GITHUB_BASE_REF}}-autopep8
 
           # The way the action should handle pathspec errors from the add and remove commands. Three options are available:
           # - ignore -> errors will be logged but the step won't fail
