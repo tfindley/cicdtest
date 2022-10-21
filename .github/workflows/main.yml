@@ -109,7 +109,9 @@ jobs:
       - name: Delete branch
         run: | 
           git checkout ${{ github.ref_name }}
-          git branch -d ${{ github.ref_name }}-autopep8
+          git branch -d ${{ github.ref_name }}-autopep8 
+          git branch -d remotes/origin/${{ github.ref_name }}-autopep8
+          
   test:
     needs: [linting]
     runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
