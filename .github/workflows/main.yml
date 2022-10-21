@@ -134,7 +134,7 @@ jobs:
 
           # The name of the user that will be displayed as the author of the commit.
           # Default: depends on the default_author input
-          # author_name: AutoPep8
+          author_name: AutoPep8
 
           # The email of the user that will be displayed as the author of the commit.
           # Default: depends on the default_author input
@@ -225,7 +225,7 @@ jobs:
 
     steps:
     - name: Checkout source code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Generate deployment package
       run: zip -r deploy.zip . -x '*.git*'
@@ -237,7 +237,7 @@ jobs:
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: django-github-actions0-aws
         environment_name: Djangogithubactions0aws-env
-        version_label: 12355
+        version_label: 12356
         region: "us-east-1"
         deployment_package: deploy.zip
 
