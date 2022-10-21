@@ -103,7 +103,7 @@ jobs:
           message: 'fix: Linting fixes'
           new_branch: ${{ github.ref_name }}-autopep8
           pathspec_error_handling: ignore
-          pull: true
+          pull: --rebase origin ${{ github.ref_name }}
           # push: --set-upstream origin ${{ github.ref_name }}-autopep8 --force
 
   test:
