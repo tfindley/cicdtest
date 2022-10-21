@@ -220,7 +220,7 @@ jobs:
 
   deploy:
     needs: [test]
-
+    if: ${{ github.ref_name }} == main
     runs-on: ${{ fromJSON('["self-hosted"]')[github.repository == 'github/docs-internal'] }}
 
     steps:
